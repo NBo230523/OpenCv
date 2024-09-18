@@ -4,8 +4,8 @@ import numpy as np
 import os
 
 # Đường dẫn đến các tệp mô hình
-predictor_path = "shape_predictor_68_face_landmarks.dat"
-face_encoder_path = "dlib_face_recognition_resnet_model_v1.dat"
+predictor_path = "/TTNT/OpenCv/shape_predictor_68_face_landmarks.dat"
+face_encoder_path = "/TTNT/OpenCv/dlib_face_recognition_resnet_model_v1.dat"
 
 # Khởi tạo các mô hình
 detector = dlib.get_frontal_face_detector()
@@ -18,7 +18,7 @@ face_descriptors = []  # Lưu các vector nhận diện
 recognized_ids = set()  # Tập hợp ID đã nhận diện
 
 # Đọc dữ liệu từ thư mục dataset
-dataset_path = 'dataset'  # Thay đổi nếu cần
+dataset_path = '/TTNT/OpenCv/dataset'  # Thay đổi nếu cần
 for filename in os.listdir(dataset_path):
     if filename.endswith('.jpg') or filename.endswith('.png'):
         name = filename.split('.')[0]  # Lấy tên từ tên tệp
