@@ -52,7 +52,7 @@ while count < num_images:
             break
 
     # Hiển thị khung hình với khuôn mặt được phát hiện
-    cv2.imshow('Khung nhận diện khuôn mặt', frame)
+    cv2.imshow('Face Detect', frame)
 
     # Thoát vòng lặp khi nhấn phím 'q'
     if cv2.waitKey(1) & 0xFF == ord('q'):

@@ -17,6 +17,9 @@
    <iconset>
     <normaloff>C:/Users/nguye/OneDrive/Hình ảnh/donga.jpg</normaloff>C:/Users/nguye/OneDrive/Hình ảnh/donga.jpg</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>

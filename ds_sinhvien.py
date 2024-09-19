@@ -77,7 +77,7 @@ class ds_sinhvien(QMainWindow):
                                             anhsinhvien = sinhvien_info["anhSinhVien"])
 
             if add_result:
-                QMessageBox.information(self, "Lỗi", f"Thêm thất bại: {add_result}, Vui lòng thử lại.", QMessageBox.StandardButton.Ok)
+                QMessageBox.information(self, "Lỗi", f"Thêm thất bại: {add_result}. Vui lòng kiểm tra lại thông tin.", QMessageBox.StandardButton.Ok)
             else:
                 QMessageBox.information(self, "Successful", "Thêm thành công.", QMessageBox.StandardButton.Ok)
         else:
@@ -117,7 +117,7 @@ class ds_sinhvien(QMainWindow):
                                             anhsinhvien = new_sinhvien_info["anhSinhVien"])
 
             if update_result:
-                QMessageBox.information(self, "Lỗi", f"Sửa thất bại: {update_result}, Vui lòng thử lại.", QMessageBox.StandardButton.Ok)
+                QMessageBox.information(self, "Lỗi", f"Sửa thất bại: {update_result}, Vui lòng kiểm tra lại thông tin.", QMessageBox.StandardButton.Ok)
             else:
                 QMessageBox.information(self, "Successful", "Sửa thành công.", QMessageBox.StandardButton.Ok)
         else:
@@ -176,6 +176,7 @@ class ds_sinhvien(QMainWindow):
         self.diaChi.clear()
         self.sdt.clear()
         self.anhSinhVien.clear()
+        self.attach_image("D:/Img TTNT/placeholder.jpg")
         self.search_sinhvien(True)
 
     def search_sinhvien(self, emptySearch: bool):

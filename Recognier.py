@@ -77,10 +77,10 @@ while True:
     # Hiển thị số lượng sinh viên đã nhận diện và tên của họ
     recognized_count = len(recognized_ids)
     names_recognized = ', '.join(recognized_ids)  # Tạo chuỗi tên đã nhận diện
-    cv2.putText(frame, f"Số sinh viên có mặt: {recognized_count}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 255, 0), 2)
-    cv2.putText(frame, f"Tên: {names_recognized}", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 255, 0), 2)
+    cv2.putText(frame, f"So sinh vien co mat: {recognized_count}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 255, 0), 2)
+    cv2.putText(frame, f"Ten: {names_recognized}", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 255, 0), 2)
 
-    cv2.imshow('Điểm danh', frame)
+    cv2.imshow('Diem danh', frame)
 
     k = cv2.waitKey(1) & 0xff
     if k == 27:  # Nhấn 'Esc' để thoát

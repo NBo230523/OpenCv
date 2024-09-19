@@ -16,6 +16,7 @@ class Ui_trang_chu(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("C:/Users/nguye/OneDrive/Hình ảnh/donga.jpg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         trang_chu.setWindowIcon(icon)
+        trang_chu.setStyleSheet("")
         self.groupBox = QtWidgets.QGroupBox(parent=trang_chu)
         self.groupBox.setGeometry(QtCore.QRect(0, 0, 581, 71))
         self.groupBox.setStyleSheet("background-color: rgba(0, 119, 182,1)\n"
