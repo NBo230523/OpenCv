@@ -18,8 +18,8 @@ cam.set(4, 480)
 detector = MTCNN()
 
 # Nhập ID và tên file từ người dùng
-face_id = input('\n Nhap ID khuon mat: ')
-file_name_prefix = input(' Nhap ten sinh vien: ')  # Nhập tên file
+face_id = input('\n Nhập ID cho khuôn mặt: ')
+file_name_prefix = input(' Nhập tên sinh viên: ')  # Nhập tên file lưu trữ hình ảnh sinh viên sau khi phát diện
 
 # Số lượng hình ảnh cần lấy
 num_images = 10
@@ -52,7 +52,7 @@ while count < num_images:
             break
 
     # Hiển thị khung hình với khuôn mặt được phát hiện
-    cv2.imshow('image', frame)
+    cv2.imshow('Khung nhận diện khuôn mặt', frame)
 
     # Thoát vòng lặp khi nhấn phím 'q'
     if cv2.waitKey(1) & 0xFF == ord('q'):

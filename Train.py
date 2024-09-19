@@ -12,7 +12,7 @@ data = []
 labels = []
 
 # Danh sách nhãn cụ thể
-names = ['Bo', 'Thi', 'Student3', 'Student4', 'Student5']  # Danh sách tên sinh viên
+names = ['Bo', 'Thi', 'Trump', 'Musk', 'Student5']  # Danh sách tên sinh viên
 
 def getImagesAndLabels(path, names):
     imagePaths = [os.path.join(path, f) for f in os.listdir(path) if f.endswith(('.jpg', '.png'))]
@@ -64,11 +64,11 @@ model.add(Dense(num_classes, activation='softmax'))
 # Biên dịch mô hình
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-print("\nBắt đầu huấn luyện")
+print("\n Bắt đầu huấn luyện")
 # Huấn luyện mô hình
 model.fit(X_train, y_train, epochs=10, batch_size=32, validation_data=(X_test, y_test))
 
 # Lưu mô hình
 model.save('/TTNT/OpenCv/trainer/face_recognition_model.keras')
 
-print("\nHuấn luyện xong và mô hình đã được lưu.")
+print("\n Huấn luyện xong và mô hình đã được lưu.")

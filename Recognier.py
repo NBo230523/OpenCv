@@ -53,6 +53,8 @@ while True:
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     faces = detector(gray)
 
+    recognized_ids.clear()  # Reset tập hợp ID đã nhận diện
+
     for face in faces:
         shape = predictor(gray, face)
         face_descriptor = face_encoder.compute_face_descriptor(frame, shape)
@@ -75,14 +77,16 @@ while True:
     # Hiển thị số lượng sinh viên đã nhận diện và tên của họ
     recognized_count = len(recognized_ids)
     names_recognized = ', '.join(recognized_ids)  # Tạo chuỗi tên đã nhận diện
-    cv2.putText(frame, f"Sinh vien da nhan dien: {recognized_count}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 255, 0), 2)
-    cv2.putText(frame, f"TEN: {names_recognized}", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 255, 0), 2)
+    cv2.putText(frame, f"Số sinh viên có mặt: {recognized_count}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 255, 0), 2)
+    cv2.putText(frame, f"Tên: {names_recognized}", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 255, 0), 2)
 
-    cv2.imshow('Diem Danh', frame)
+    cv2.imshow('Điểm danh', frame)
 
     k = cv2.waitKey(1) & 0xff
     if k == 27:  # Nhấn 'Esc' để thoát
         break
+    elif k == ord('r'):  # Nhấn 'r' để reset bộ đếm
+        recognized_ids.clear()  # Xóa tập hợp đã nhận diện
 
 cam.release()
 cv2.destroyAllWindows()
