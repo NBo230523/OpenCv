@@ -44,7 +44,7 @@ while count < num_images:
 
         # Lưu khuôn mặt vào thư mục dữ liệu với tên tùy chỉnh
         face_image = frame[y:y + height, x:x + width]
-        cv2.imwrite(f"dataset/{file_name_prefix}.{face_id}.{count + 1}.jpg", face_image)
+        cv2.imwrite(f"/TTNT/OpenCv/dataset/{file_name_prefix}.{face_id}.{count + 1}.jpg", face_image)
         count += 1
 
         # Dừng nếu đã đủ số lượng hình ảnh

@@ -12,7 +12,7 @@ data = []
 labels = []
 
 # Danh sách nhãn cụ thể
-names = ['Bo', 'Thi', 'Trump', 'Musk', 'Student5']  # Danh sách tên sinh viên
+names = ['Bo', 'Thi', 'Trump', 'Musk', 'Quan', 'Hoan']  # Danh sách tên sinh viên
 
 def getImagesAndLabels(path, names):
     imagePaths = [os.path.join(path, f) for f in os.listdir(path) if f.endswith(('.jpg', '.png'))]

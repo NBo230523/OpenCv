@@ -2,10 +2,15 @@ import cv2
 import dlib
 import numpy as np
 import os
+# import time
 
 # Đường dẫn đến các tệp mô hình
 predictor_path = "/TTNT/OpenCv/shape_predictor_68_face_landmarks.dat"
 face_encoder_path = "/TTNT/OpenCv/dlib_face_recognition_resnet_model_v1.dat"
+
+# Tính dung lượng của các tệp mô hình
+# predictor_size = os.path.getsize(predictor_path) / (1024 * 1024)  # MB
+# face_encoder_size = os.path.getsize(face_encoder_path) / (1024 * 1024)  # MB
 
 # Khởi tạo các mô hình
 detector = dlib.get_frontal_face_detector()
@@ -55,7 +60,10 @@ while True:
 
     recognized_ids.clear()  # Reset tập hợp ID đã nhận diện
 
+    # total_processing_time = 0  # Biến lưu tổng thời gian xử lý
+
     for face in faces:
+        # start_time = time.time()  # Bắt đầu đếm thời gian
         shape = predictor(gray, face)
         face_descriptor = face_encoder.compute_face_descriptor(frame, shape)
 
@@ -71,8 +79,25 @@ while True:
             name = "unknown"
             color = (0, 0, 255)  # Màu đỏ cho khuôn mặt không nhận diện
 
+        # Tính toán thời gian nhận diện
+        # end_time = time.time() # Kết thúc đếm thời gian
+        # processing_time = end_time - start_time  # Thời gian xử lý tính bằng giây
+        # total_processing_time += processing_time  # Cộng dồn thời gian vào tổng
+
+        # Vẽ khung và hiển thị tên
         cv2.rectangle(frame, (face.left(), face.top()), (face.right(), face.bottom()), color, 2)
         cv2.putText(frame, name, (face.left(), face.top() - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (255, 255, 255), 2)
+
+        # Hiển thị thời gian nhận diện
+        # cv2.putText(frame, f'Time: {processing_time:.3f} s', (face.left(), face.bottom() + 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
+
+    # Hiển thị tổng thời gian xử lý
+    # avg_processing_time = total_processing_time / len(faces) if faces else 0
+    # cv2.putText(frame, f'Trung binh: {avg_processing_time:.3f} s', (10, 90), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
+
+    # Hiển thị dung lượng của các tệp mô hình
+    # cv2.putText(frame, f'shape_predictor: {predictor_size:.2f} MB', (10, 90), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
+    # cv2.putText(frame, f'face_recognition: {face_encoder_size:.2f} MB', (10, 110), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
 
     # Hiển thị số lượng sinh viên đã nhận diện và tên của họ
     recognized_count = len(recognized_ids)
