@@ -19,8 +19,8 @@ def getImagesAndLabels(path, names):
     
     for imagePath in imagePaths:
         img = cv2.imread(imagePath)
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # Chuyển sang grayscale
-        img = cv2.resize(img, (64, 64))  # Thay đổi kích thước hình ảnh
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  
+        img = cv2.resize(img, (64, 64))  
         data.append(img)
         
         # Gán nhãn dựa trên tên tệp
@@ -60,10 +60,8 @@ model.add(MaxPooling2D(pool_size=(2, 2)))
 model.add(Flatten())
 model.add(Dense(128, activation='relu'))
 model.add(Dense(num_classes, activation='softmax'))
-
 # Biên dịch mô hình
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-
 print("\n Bắt đầu huấn luyện")
 # Huấn luyện mô hình
 model.fit(X_train, y_train, epochs=10, batch_size=32, validation_data=(X_test, y_test))
