@@ -39,7 +39,7 @@ while True:
         cv2.putText(frame, name, (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
 
     cv2.imshow("Them sinh vien", frame)
-    if cv2.waitKey(1) & 0xFF == ord('q') or count >= 10:
+    if cv2.waitKey(1) & 0xFF == ord('q') or count >= 20:
         break
 
 cam.release()
@@ -57,6 +57,5 @@ data['names'].extend([name] * len(embeddings))
 
 with open('D:/OpenCv/OpenCv/data/known_embeddings.pkl', 'wb') as f:
     pickle.dump(data, f)
-
 
 print(f"✅ Đã thêm {count} ảnh của {name} vào dữ liệu.")
