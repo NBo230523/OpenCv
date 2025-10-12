@@ -5,9 +5,44 @@ import joblib
 import pickle
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
+import os
+from openpyxl import Workbook, load_workbook
+import datetime
+
 
 SIMILARITY_THRESHOLD = 0.6
 CONFIDENCE_THRESHOLD = 0.8
+
+EXCEL_PATH = 'D:/OpenCv/OpenCv/data/diem_danh.xlsx'
+
+def ghi_diem_danh(ten):
+    now = datetime.datetime.now()
+    time_str = now.strftime("%Y-%m-%d %H:%M:%S")
+
+    # Nếu file chưa có, tạo mới
+    if not os.path.exists(EXCEL_PATH):
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "DiemDanh"
+        ws.append(["Tên", "Thời gian có mặt"])
+        wb.save(EXCEL_PATH)
+
+    # Mở file và ghi dữ liệu
+    wb = load_workbook(EXCEL_PATH)
+    ws = wb.active
+
+    # Kiểm tra xem người này đã được ghi trong 5 phút gần đây chưa (tránh ghi trùng liên tục)
+    last_row = None
+    for row in ws.iter_rows(values_only=True):
+        if row[0] == ten:
+            last_row = row
+    if last_row:
+        last_time = datetime.datetime.strptime(last_row[1], "%Y-%m-%d %H:%M:%S")
+        if (now - last_time).total_seconds() < 7200:
+            return
+
+    ws.append([ten, time_str])
+    wb.save(EXCEL_PATH)
 
 detector = MTCNN()
 embedder = FaceNet()
@@ -52,6 +87,11 @@ while True:
                 best_score = sims[best_index]
                 name = known_names[best_index] if best_score > SIMILARITY_THRESHOLD else "Unknown"
 
+            # Ghi điểm danh nếu nhận diện được người hợp lệ
+            if name != "Unknown":
+                ghi_diem_danh(name)
+
+            # Vẽ khung và tên
             cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
             cv2.putText(frame, name, (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
         except:
@@ -60,6 +100,6 @@ while True:
     cv2.imshow("Diem Danh", frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-
+        
 cam.release()
 cv2.destroyAllWindows()

@@ -28,7 +28,7 @@ class Main(QMainWindow):
 
 
     def diemDanhSv(self):
-       subprocess.Popen([sys.executable, 'D:\OpenCv\OpenCv\recognize.py'])
+       subprocess.Popen([sys.executable, 'D:/OpenCv/OpenCv/recognize.py'])
 
     def show_ds_sinhvien(self):
         self.ds_sinhvien_window = ds_sinhvien()

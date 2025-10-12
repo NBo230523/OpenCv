@@ -42,7 +42,6 @@ def augment_image(img):
 
     return augmentations  # Trả về nhiều ảnh augment
 
-# === Phần chính ===
 
 embedder = FaceNet()
 dataset_dir = 'D:/OpenCv/OpenCv/data/dataset'
